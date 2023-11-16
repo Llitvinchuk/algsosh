@@ -26,8 +26,7 @@ class LinkedListNode<T> {
     this.next = next === undefined ? null : next;
   }
 }
-
-export class LinkedList<T> implements ILinkedList<T> {
+class LinkedList<T> implements ILinkedList<T> {
   private head: LinkedListNode<T> | null;
   private size: number;
 
