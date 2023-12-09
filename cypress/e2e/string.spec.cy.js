@@ -78,7 +78,7 @@ describe("Строка", () => {
 
     cy.get('div[class*="circle_circle"]')
       .eq(2)
-      .should("have.css", "border-color", "rgb(210, 82, 225)")
+      .should("have.css", "border-color", "rgb(127, 224, 81)")
       .contains("l");
 
     cy.get('div[class*="circle_circle"]')
