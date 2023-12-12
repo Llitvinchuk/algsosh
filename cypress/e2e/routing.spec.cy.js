@@ -1,6 +1,6 @@
 describe("Тестирование переходов по страницам", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000");
+    cy.visit("/");
   });
 
   it("Стартовая страница", () => {
@@ -8,7 +8,7 @@ describe("Тестирование переходов по страницам", 
   });
 
   it("Переход по ссылке на страницы с визуализацией алгоритмов", () => {
-    cy.visit("http://localhost:3000/");
+    cy.visit("/");
     cy.get("a").each((page) => {
       cy.request(page.prop("href"));
     });

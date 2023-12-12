@@ -1,6 +1,11 @@
+const circle = 'div[class*="circle_circle"]';
+const content = 'div[class*="circle_content"]';
+const color = "rgb(0, 50, 255)";
+const secondColor = "rgb(210, 82, 225)";
+
 describe("Очередь", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/queue");
+    cy.visit("/queue");
   });
 
   it("Кнопка добавления недоступна, если в инпуте пусто", () => {
@@ -14,43 +19,41 @@ describe("Очередь", () => {
     cy.get("button").contains("Добавить").click();
 
     cy.clock();
-    cy.get('div[class*="circle_circle"]')
+    cy.get(circle)
       .eq(0)
-      .should("have.css", "border-color", "rgb(0, 50, 255)")
+      .should("have.css", "border-color", color)
       .contains("6");
-    cy.get('div[class*="circle_content"]').eq(0).contains("head");
-    cy.get('div[class*="circle_content"]').eq(0).contains("tail");
+    cy.get(content).eq(0).contains("head");
+    cy.get(content).eq(0).contains("tail");
 
     cy.tick(500);
-    cy.get('div[class*="circle_circle"]')
-      .should("have.css", "border-color", "rgb(0, 50, 255)")
-      .contains("6");
+    cy.get(circle).should("have.css", "border-color", color).contains("6");
 
     cy.get("input").type("66");
     cy.should("have.value", "66");
     cy.get("button").contains("Добавить").click();
 
-    cy.get('div[class*="circle_circle"]')
+    cy.get(circle)
       .eq(0)
-      .should("have.css", "border-color", "rgb(0, 50, 255)")
+      .should("have.css", "border-color", color)
       .contains("6");
-    cy.get('div[class*="circle_content"]').eq(0).contains("head");
+    cy.get(content).eq(0).contains("head");
 
-    cy.get('div[class*="circle_circle"]')
+    cy.get(circle)
       .eq(1)
-      .should("have.css", "border-color", "rgb(210, 82, 225)")
+      .should("have.css", "border-color", secondColor)
       .contains("66");
-    cy.get('div[class*="circle_content"]').eq(1).contains("tail");
+    cy.get(content).eq(1).contains("tail");
 
     cy.tick(500);
-    cy.get('div[class*="circle_circle"]')
+    cy.get(circle)
       .eq(0)
-      .should("have.css", "border-color", "rgb(0, 50, 255)")
+      .should("have.css", "border-color", color)
       .contains("6");
 
-    cy.get('div[class*="circle_circle"]')
+    cy.get(circle)
       .eq(1)
-      .should("have.css", "border-color", "rgb(0, 50, 255)")
+      .should("have.css", "border-color", color)
       .contains("66");
   });
 
@@ -67,33 +70,29 @@ describe("Очередь", () => {
 
     cy.tick(500);
     cy.get("button").contains("Удалить").click();
-    cy.get('div[class*="circle_circle"]')
+    cy.get(circle)
       .eq(0)
-      .should("have.css", "border-color", "rgb(210, 82, 225)")
+      .should("have.css", "border-color", secondColor)
       .contains("6");
-    cy.get('div[class*="circle_circle"]')
+    cy.get(circle)
       .eq(1)
-      .should("have.css", "border-color", "rgb(0, 50, 255)")
+      .should("have.css", "border-color", color)
       .contains("66");
 
     cy.tick(500);
-    cy.get('div[class*="circle_circle"]')
-      .eq(0)
-      .should("have.css", "border-color", "rgb(0, 50, 255)");
-    cy.get('div[class*="circle_circle"]')
+    cy.get(circle).eq(0).should("have.css", "border-color", color);
+    cy.get(circle)
       .eq(1)
-      .should("have.css", "border-color", "rgb(0, 50, 255)")
+      .should("have.css", "border-color", color)
       .contains("66");
     cy.get("button").contains("Удалить").click();
-    cy.get('div[class*="circle_circle"]')
+    cy.get(circle)
       .eq(1)
-      .should("have.css", "border-color", "rgb(210, 82, 225)")
+      .should("have.css", "border-color", secondColor)
       .contains("66");
 
     cy.tick(500);
-    cy.get('div[class*="circle_circle"]')
-      .eq(1)
-      .should("have.css", "border-color", "rgb(0, 50, 255)");
+    cy.get(circle).eq(1).should("have.css", "border-color", color);
   });
 
   it("Поведение кнопки 'Очистить'", () => {
@@ -113,6 +112,6 @@ describe("Очередь", () => {
     cy.get("button").contains("Очистить").click();
 
     cy.tick(500);
-    cy.get('div[class*="circle_circle"]').should("have.text", "");
+    cy.get(circle).should("have.text", "");
   });
 });

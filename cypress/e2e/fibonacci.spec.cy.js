@@ -1,6 +1,8 @@
+const circle = 'div[class*="circle_circle"]';
+
 describe("Фибоначчи", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/fibonacci");
+    cy.visit("/fibonacci");
   });
 
   it("Кнопка добавления недоступна, если в инпуте пусто", () => {
@@ -15,33 +17,18 @@ describe("Фибоначчи", () => {
     cy.get("button").contains("Рассчитать").click();
 
     cy.tick(500);
-    cy.get('div[class*="circle_circle"]')
-      .should("have.length", 1)
-      .eq(0)
-      .contains("1");
+    cy.get(circle).should("have.length", 1).eq(0).contains("1");
 
     cy.tick(500);
-    cy.get('div[class*="circle_circle"]')
-      .should("have.length", 2)
-      .eq(1)
-      .contains("1");
+    cy.get(circle).should("have.length", 2).eq(1).contains("1");
 
     cy.tick(500);
-    cy.get('div[class*="circle_circle"]')
-      .should("have.length", 3)
-      .eq(2)
-      .contains("2");
+    cy.get(circle).should("have.length", 3).eq(2).contains("2");
 
     cy.tick(500);
-    cy.get('div[class*="circle_circle"]')
-      .should("have.length", 4)
-      .eq(3)
-      .contains("3");
+    cy.get(circle).should("have.length", 4).eq(3).contains("3");
 
     cy.tick(500);
-    cy.get('div[class*="circle_circle"]')
-      .should("have.length", 5)
-      .eq(4)
-      .contains("5");
+    cy.get(circle).should("have.length", 5).eq(4).contains("5");
   });
 });
